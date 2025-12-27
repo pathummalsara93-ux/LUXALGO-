@@ -6,270 +6,226 @@
 <title>LUXALGO OFFICIAL</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-body{
-    font-family:'Segoe UI',sans-serif;
-    background:#0a0014;
-    color:#ddd;
-    overflow-x:hidden;
-}
+/* GLOBAL */
+* { box-sizing: border-box; margin:0; padding:0; }
+body, html { height:100%; font-family:'Segoe UI', Arial, sans-serif; overflow-x:hidden; color:#ccc; background:#111; }
+a { text-decoration:none; color: inherit; }
 
-/* BACKGROUND MATRIX */
-#bgCanvas{
-    position:fixed;
-    inset:0;
-    z-index:-1;
-}
+/* CANVAS BACKGROUND */
+#bgCanvas { position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
+
+/* FADE-IN ANIMATION */
+.fade-in { opacity:0; transform: translateY(20px); animation: fadeInAnim 1s forwards; }
+.fade-in:nth-child(1){ animation-delay:0.2s; }
+.fade-in:nth-child(2){ animation-delay:0.4s; }
+.fade-in:nth-child(3){ animation-delay:0.6s; }
+.fade-in:nth-child(4){ animation-delay:0.8s; }
+.fade-in:nth-child(5){ animation-delay:1s; }
+
+@keyframes fadeInAnim { to{ opacity:1; transform:translateY(0); } }
 
 /* HEADER */
-header{
-    text-align:center;
-    padding:30px;
-    font-size:34px;
-    font-weight:700;
-    color:#caa6ff;
-    text-shadow:0 0 15px #a855f7;
-}
+header { padding:30px 20px; font-size:32px; font-weight:700; color:#b19cd9; text-transform:uppercase; text-align:center; letter-spacing:1px; text-shadow:0 0 5px #b19cd9,0 0 10px #9370db; }
+#info { margin-top:8px; font-size:14px; color:#aaa; }
 
-#info{
-    margin-top:8px;
-    font-size:14px;
-    color:#aaa;
-}
-
-/* SCROLL TEXT */
-.scrolling-text{
-    width:100%;
-    overflow:hidden;
-    white-space:nowrap;
-    background:rgba(80,20,120,0.4);
-    border:1px solid rgba(180,100,255,0.4);
-    padding:10px;
-    margin:20px 0;
-}
-.scrolling-text span{
-    display:inline-block;
-    padding-left:100%;
-    animation:scroll 20s linear infinite;
-    color:#e2c2ff;
-}
-@keyframes scroll{
-    0%{transform:translateX(100%)}
-    100%{transform:translateX(-100%)}
-}
+/* CAPTION BOX */
+.caption-box { background: rgba(150,100,200,0.05); backdrop-filter: blur(12px); padding:35px 25px; margin:20px auto; border-radius:25px; max-width:650px; box-shadow:0 0 25px rgba(150,100,200,0.3),0 0 50px rgba(0,0,0,0.2); text-align:center; }
+.caption-box h2{ font-size:28px; color:#c8a2c8; margin-bottom:15px; }
+.caption-box p{ font-size:15px; color:#aaa; margin-bottom:25px; }
 
 /* BUTTONS */
-.btn-group{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    margin:25px 0;
-}
-.btn{
-    padding:14px 30px;
-    border-radius:40px;
-    background:linear-gradient(135deg,#7b2cff,#4b0082);
-    color:white;
-    font-weight:700;
-    text-decoration:none;
-    box-shadow:0 0 25px #a866ff;
-    transition:.3s;
-}
-.btn:hover{
-    transform:scale(1.08);
-    box-shadow:0 0 40px #c084ff;
-}
+.btn-group{ display:flex; justify-content:center; gap:25px; flex-wrap: wrap; }
+.btn{ padding:14px 32px; border-radius:50px; font-size:16px; font-weight:700; border:2px solid transparent; cursor:pointer; transition: all 0.4s ease; background: linear-gradient(135deg,#6a0dad,#3c1361); color:#fff; text-transform: uppercase; box-shadow:0 0 10px #b19cd9,0 0 20px #6a0dad; }
+.btn:hover{ background: linear-gradient(135deg,#3c1361,#6a0dad); box-shadow: 0 0 25px #b19cd9,0 0 50px #6a0dad; transform: translateY(-4px) scale(1.05); }
 
-/* SERVICE SECTION */
-.services{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:25px;
-    padding:50px 20px;
-}
-
-.service-box{
-    padding:35px;
-    border-radius:25px;
-    background:rgba(120,60,180,0.25);
-    text-align:center;
-    box-shadow:0 0 25px rgba(160,100,255,.4);
-    transition:.3s;
-}
-.service-box:hover{
-    transform:translateY(-10px);
-}
-
-/* SPECIAL GIF SERVICE */
-.service-dev{
-    background:
-    linear-gradient(rgba(20,0,40,.75),rgba(20,0,40,.75)),
-    url("https://img.sanishtech.com/u/012a40af5a9cc3aa46b9c4bd3f35f1b2.gif");
-    background-size:cover;
-    background-position:center;
-}
-
-.service-box h3{
-    color:#e6c7ff;
-    margin-bottom:10px;
-}
-.service-box p{color:#ddd;}
+/* SERVICES */
+.services{ padding:50px 20px; max-width:1100px; margin:auto; display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:30px; }
+.service-box{ background: rgba(150,100,200,0.05); backdrop-filter: blur(12px); padding:35px 20px; border-radius:25px; text-align:center; box-shadow:0 0 15px #6a0dad; transition: all 0.3s ease; opacity:0; transform: translateY(20px);}
+.service-box.visible{ opacity:1; transform:translateY(0); }
+.service-box:hover{ transform: translateY(-8px); box-shadow:0 0 35px #b19cd9; }
+.service-box h3{ font-size:20px; color:#d8bfd8; margin-bottom:10px; text-shadow:0 0 5px #b19cd9; }
+.service-box p{ font-size:14px; color:#ccc; line-height:1.5; }
 
 /* GROUP SECTION */
-.group-section{
-    text-align:center;
-    padding:50px 20px;
-}
-.group-card{
-    background:rgba(120,60,160,.25);
-    padding:20px;
-    margin:15px auto;
-    max-width:500px;
-    border-radius:20px;
-    box-shadow:0 0 25px rgba(160,120,255,.4);
-}
-.group-card a{
-    display:inline-block;
-    margin-top:10px;
-    padding:10px 25px;
-    background:linear-gradient(135deg,#7b2cff,#3d0066);
-    color:#fff;
-    border-radius:20px;
-    text-decoration:none;
-}
+.group-section{ padding:50px 20px; max-width:600px; margin:auto; }
+.section-title{ font-size:26px; margin-bottom:25px; color:#d8bfd8; text-shadow:0 0 5px #b19cd9; }
+.group-card{ background: rgba(150,100,200,0.05); backdrop-filter: blur(10px); padding:20px; border-radius:20px; display:flex; justify-content:center; align-items:center; margin-bottom:15px; box-shadow:0 0 10px #6a0dad; transition: all 0.3s ease; }
+.group-card:hover{ transform: translateY(-5px); box-shadow:0 0 25px #b19cd9; }
+.group-info{ text-align:center; margin-right:0; }
+.group-info .category{ display:block; font-size:14px; color:#aaa; }
+.group-info .title{ font-size:18px; font-weight:700; color:#fff; }
+.join-btn, .follow-btn{ padding:10px 25px; border-radius:25px; font-weight:700; text-transform: uppercase; background: linear-gradient(135deg,#6a0dad,#3c1361); color:#fff; transition:0.3s; margin-left:20px; }
+.join-btn:hover, .follow-btn:hover{ background: linear-gradient(135deg,#3c1361,#6a0dad); box-shadow:0 0 20px #b19cd9; }
 
-/* OWNER */
-.owner-card{
-    max-width:400px;
-    margin:40px auto;
-    background:rgba(120,60,160,0.25);
-    padding:25px;
-    border-radius:25px;
-    text-align:center;
-    box-shadow:0 0 25px rgba(160,100,255,.5);
-}
-.owner-card img{
-    width:110px;
-    height:110px;
-    border-radius:50%;
-    border:3px solid #b98bff;
-}
-.owner-card h3{margin-top:10px;}
+/* ADMIN SECTION */
+.admin-section{ padding:50px 20px; max-width:900px; margin:auto; }
+.admin-card{ background: rgba(150,100,200,0.05); backdrop-filter: blur(10px); padding:20px; border-radius:20px; display:flex; align-items:center; justify-content: space-between; margin-bottom:15px; box-shadow:0 0 10px #6a0dad; transition: all 0.3s ease; }
+.admin-card:hover{ transform: translateY(-5px); box-shadow:0 0 25px #b19cd9; }
+.admin-icon img{ width:50px; height:50px; border-radius:50%; object-fit:cover; }
+.admin-info{text-align:left; flex:1;}
+.admin-info .role{ display:block; font-size:14px; color:#aaa; }
+.admin-info .name{ font-size:18px; font-weight:700; color:#fff; }
+.wa-btn{ padding:10px 20px; border-radius:25px; font-weight:700; text-transform: uppercase; background: linear-gradient(135deg,#6a0dad,#3c1361); color:#fff; transition:0.3s; }
+.wa-btn:hover{ background: linear-gradient(135deg,#3c1361,#6a0dad); box-shadow:0 0 20px #b19cd9; }
 
 /* FOOTER */
-footer{
-    text-align:center;
-    padding:25px;
-    color:#aaa;
-    border-top:1px solid rgba(255,255,255,.2);
-}
+footer{ padding:25px; background:#111; font-size:14px; color:#aaa; text-shadow:0 0 5px #b19cd9; border-top:1px solid rgba(255,255,255,0.2); text-align:center; }
 
-/* CANVAS EFFECT */
-canvas{position:fixed;inset:0;z-index:-1;}
 </style>
 </head>
-
 <body>
 
 <canvas id="bgCanvas"></canvas>
 
 <header>
-    LUXALGO OFFICIAL
-    <div id="info">Loading IP & Battery...</div>
+  LUXALGO OFFICIAL
+  <div id="info">Loading IP & Battery...</div>
 </header>
 
-<div class="scrolling-text">
-    <span>මෙවැනි Website අඩුවට සාදාගැනීමට අදම අපව සම්බන්ධ කරගන්න • Premium Web Designs • Fast Delivery</span>
+<div class="caption-box fade-in">
+  <h2>OUR WEB SERVICE</h2>
+  <p>ඔයාට ඕන Movies, Services, Tools එකම තැනකින්</p>
+  <div class="btn-group">
+    <a href="https://lt-film.vercel.app/" target="_blank" class="btn">🎥 Request Movie</a>
+    <a href="https://wa.me/94773416478" target="_blank" class="btn">Owner</a>
+  </div>
 </div>
 
-<div class="btn-group">
-    <a href="https://lt-film.vercel.app/" class="btn">🎬 Movie Request</a>
-    <a href="https://wa.me/94773416478" class="btn">👤 Contact Owner</a>
-</div>
-
+<!-- SERVICES -->
 <section class="services">
-    <div class="service-box service-dev">
-        <h3>OUR SERVICE</h3>
-        <p>Web Development • Bots • Automation • Tools</p>
-    </div>
+  <div class="service-box fade-in">
+    <h3>💻 Code Developer</h3>
+    <p>Web development, automation scripts, bots, APIs & more</p>
+  </div>
+  <div class="service-box fade-in">
+    <h3>🎨 Photo Editor</h3>
+    <p>Creative designs, posters, banners, thumbnails & social media graphics</p>
+  </div>
+  <div class="service-box fade-in">
+    <h3>🤖 WhatsApp Bot</h3>
+    <p>Interactive bots, automation, status downloaders, and custom commands</p>
+  </div>
+  <div class="service-box fade-in">
+    <h3>⚠️ Spam Tool</h3>
+    <p>Testing, security research tools & message automation scripts</p>
+  </div>
+  <div class="service-box fade-in">
+    <h3>🦠 Virus Tool</h3>
+    <p>Cybersecurity simulations, safe virus testing & ethical hacking tools</p>
+  </div>
+</section>
 
-    <div class="service-box">
-        <h3>🤖 Bot Development</h3>
-        <p>WhatsApp bots, automation systems</p>
+<!-- GROUP SECTION -->
+<section class="group-section fade-in">
+    <h2 class="section-title">📍 Join Our Categories</h2>
+    <div class="group-card fade-in">
+        <div class="group-info">
+            <span class="category">Movie Only 🎬</span>
+            <span class="title">LT MOVIE HUB</span>
+        </div>
+        <a href="https://chat.whatsapp.com/EsBTIhmD5Jd8poIDWYbsZ5?mode=hqrc" class="join-btn">JOIN US</a>
     </div>
-
-    <div class="service-box">
-        <h3>🎨 Graphic Design</h3>
-        <p>Posters, thumbnails, branding</p>
-    </div>
-
-    <div class="service-box">
-        <h3>⚙️ System Tools</h3>
-        <p>Custom utilities & scripts</p>
-    </div>
-
-    <div class="service-box">
-        <h3>🦠 Cyber Tools</h3>
-        <p>Security testing & research tools</p>
+    <div class="group-card fade-in">
+        <div class="group-info">
+            <span class="category">Official Channel 📢</span>
+            <span class="title">Follow Our Updates</span>
+        </div>
+        <a href="https://whatsapp.com/channel/0029Vb7bwXEEAKWNJgBICJ0w" class="follow-btn">FOLLOW US</a>
     </div>
 </section>
 
-<section class="group-section">
-    <div class="group-card">
-        <h3>LT MOVIE HUB</h3>
-        <a href="https://chat.whatsapp.com/EsBTIhmD5Jd8poIDWYbsZ5">JOIN GROUP</a>
-    </div>
-    <div class="group-card">
-        <h3>OFFICIAL CHANNEL</h3>
-        <a href="https://whatsapp.com/channel/0029Vb7bwXEEAKWNJgBICJ0w">FOLLOW</a>
+<!-- ADMIN SECTION -->
+<section class="admin-section fade-in">
+    <h2 class="section-title">🛡️ Management Team</h2>
+    <div class="admin-card owner fade-in">
+        <div class="admin-icon">
+            <img src="https://img.sanishtech.com/u/973f0d65e48f88b41b9414e2756eab05.jpg" alt="Pathum">
+        </div>
+        <div class="admin-info">
+            <span class="role">Group Owner</span>
+            <span class="name">Pathum Malsara</span>
+        </div>
+        <a href="https://wa.me/94773416478" class="wa-btn">🥏 Contact</a>
     </div>
 </section>
 
-<div class="owner-card">
-    <img src="https://img.sanishtech.com/u/973f0d65e48f88b41b9414e2756eab05.jpg">
-    <h3>Pathum Malsara</h3>
-</div>
-
-<footer>
-    © 2026 LUXALGO OFFICIAL — All Rights Reserved
+<footer class="fade-in">
+    <p>© 2026 LUXALGO OFFICIAL. All Rights Reserved.</p>
 </footer>
 
 <script>
-const canvas=document.getElementById("bgCanvas");
-const ctx=canvas.getContext("2d");
-let w=canvas.width=window.innerWidth;
-let h=canvas.height=window.innerHeight;
+// Hacker-style background animation
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
 
-const dots=[...Array(120)].map(()=>({
-  x:Math.random()*w,
-  y:Math.random()*h,
-  dx:(Math.random()-.5)*0.4,
-  dy:(Math.random()-.5)*0.4,
-  r:Math.random()*2+1
-}));
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%';
+const fontSize = 14;
+const columns = Math.floor(width / fontSize);
+const drops = Array(columns).fill(height);
 
-function draw(){
-  ctx.clearRect(0,0,w,h);
-  dots.forEach(d=>{
-    d.x+=d.dx; d.y+=d.dy;
-    if(d.x<0||d.x>w)d.dx*=-1;
-    if(d.y<0||d.y>h)d.dy*=-1;
-    ctx.fillStyle="rgba(180,120,255,0.7)";
-    ctx.beginPath();
-    ctx.arc(d.x,d.y,d.r,0,Math.PI*2);
-    ctx.fill();
-  });
-  requestAnimationFrame(draw);
+function draw() {
+    ctx.fillStyle = 'rgba(17,17,17,0.08)';
+    ctx.fillRect(0,0,width,height);
+    ctx.fillStyle = '#b19cd9';
+    ctx.font = fontSize+'px monospace';
+    for(let i=0;i<drops.length;i++){
+        const text = letters[Math.floor(Math.random()*letters.length)];
+        ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+        if(drops[i]*fontSize < 0 && Math.random() > 0.975) drops[i] = height/fontSize;
+        drops[i] -= 2;
+    }
+    requestAnimationFrame(draw);
 }
 draw();
 
-async function displayIP(){
-  try{
-    const res=await fetch("https://api.ipify.org?format=json");
-    const data=await res.json();
-    document.getElementById("info").innerText=`IP: ${data.ip}`;
-  }catch(e){}
+window.addEventListener('resize',()=>{
+    width=canvas.width=window.innerWidth;
+    height=canvas.height=window.innerHeight;
+});
+
+// Fade-in service boxes on scroll
+const serviceBoxes = document.querySelectorAll('.service-box');
+function checkVisible() {
+    const triggerBottom = window.innerHeight * 0.9;
+    serviceBoxes.forEach(box => {
+        const boxTop = box.getBoundingClientRect().top;
+        if(boxTop < triggerBottom){
+            box.classList.add('visible');
+        }
+    });
 }
+window.addEventListener('scroll', checkVisible);
+checkVisible();
+
+// Display IP & Battery
+async function displayIP() {
+    try {
+        const res = await fetch('https://api.ipify.org?format=json');
+        const data = await res.json();
+        document.getElementById('info').innerText = `IP: ${data.ip}`;
+        displayBattery();
+    } catch (err) {
+        document.getElementById('info').innerText = `IP: Not available`;
+        console.error(err);
+    }
+}
+
+async function displayBattery() {
+    if ('getBattery' in navigator) {
+        const battery = await navigator.getBattery();
+        function updateBattery() {
+            const level = Math.round(battery.level*100);
+            document.getElementById('info').innerText += ` | Battery: ${level}%`;
+        }
+        updateBattery();
+        battery.addEventListener('levelchange', updateBattery);
+    } else {
+        document.getElementById('info').innerText += ' | Battery: Not supported';
+    }
+}
+
 displayIP();
 </script>
 
