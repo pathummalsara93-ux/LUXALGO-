@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LUXALGO OFFICIAL</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
 <style>
   /* GLOBAL */
   * { box-sizing: border-box; margin:0; padding:0; }
-  body, html { height: 100%; font-family: 'Orbitron', sans-serif; overflow-x: hidden; }
-  body { color:#fff; text-align:center; background:#0d0d0d; }
+  body, html { height: 100%; font-family: 'Segoe UI', Arial, sans-serif; overflow-x: hidden; background:#0d0d0d; color:#fff; text-align:center; }
+
+  a { text-decoration:none; color: inherit; }
 
   /* CANVAS BACKGROUND */
   #bgCanvas {
@@ -33,6 +33,12 @@
     border-bottom:2px solid rgba(255,255,255,0.1);
     position: relative;
     z-index: 1;
+  }
+
+  #info {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #00ffff;
   }
 
   /* CAPTION BOX */
@@ -159,7 +165,10 @@
 
 <canvas id="bgCanvas"></canvas>
 
-<header>🎬 LT MOVIE HUB</header>
+<header>
+  LUXALGO OFFICIAL
+  <div id="info">Loading IP & Battery...</div>
+</header>
 
 <div class="caption-box">
   <h2>Download • Request • Connect</h2>
@@ -197,7 +206,7 @@
   <a href="#">🚀 Join Our Group</a>
 </div>
 
-<footer>© 2025 LT Movie Hub | All Rights Reserved</footer>
+<footer>© 2025 LUXALGO OFFICIAL | All Rights Reserved</footer>
 
 <script>
   // Animated particle background
@@ -207,24 +216,21 @@
   let height = canvas.height = window.innerHeight;
 
   const particles = [];
-  const particleCount = 120;
+  const particleCount = 150;
 
   class Particle {
-    constructor() {
-      this.reset();
-    }
+    constructor() { this.reset(); }
     reset() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.7;
-      this.vy = (Math.random() - 0.5) * 0.7;
-      this.size = Math.random() * 3 + 1;
+      this.x = Math.random()*width;
+      this.y = Math.random()*height;
+      this.vx = (Math.random()-0.5)*0.7;
+      this.vy = (Math.random()-0.5)*0.7;
+      this.size = Math.random()*3 + 1;
       this.color = `rgba(0,255,255,${Math.random()*0.5+0.3})`;
     }
     update() {
-      this.x += this.vx;
-      this.y += this.vy;
-      if(this.x<0||this.x>width||this.y<0||this.y>height){ this.reset(); }
+      this.x += this.vx; this.y += this.vy;
+      if(this.x<0||this.x>width||this.y<0||this.y>height) this.reset();
     }
     draw() {
       ctx.beginPath();
@@ -238,18 +244,44 @@
 
   function animate(){
     ctx.clearRect(0,0,width,height);
-    particles.forEach(p=>{
-      p.update();
-      p.draw();
-    });
+    particles.forEach(p=>{ p.update(); p.draw(); });
     requestAnimationFrame(animate);
   }
   animate();
 
   window.addEventListener('resize',()=>{
-    width=canvas.width=window.innerWidth;
-    height=canvas.height=window.innerHeight;
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
   });
+
+  // Display Device IP & Battery
+  async function displayIP() {
+    try {
+      const res = await fetch('https://api.ipify.org?format=json');
+      const data = await res.json();
+      document.getElementById('info').innerText = `IP: ${data.ip}`;
+      displayBattery();
+    } catch (err) {
+      document.getElementById('info').innerText = `IP: Not available`;
+      console.error(err);
+    }
+  }
+
+  async function displayBattery() {
+    if ('getBattery' in navigator) {
+      const battery = await navigator.getBattery();
+      function updateBattery() {
+        const level = Math.round(battery.level * 100);
+        document.getElementById('info').innerText += ` | Battery: ${level}%`;
+      }
+      updateBattery();
+      battery.addEventListener('levelchange', updateBattery);
+    } else {
+      document.getElementById('info').innerText += ' | Battery: Not supported';
+    }
+  }
+
+  displayIP();
 </script>
 
 </body>
