@@ -152,31 +152,45 @@ footer{ padding:25px; background:#111; font-size:14px; color:#aaa; text-shadow:0
 </footer>
 
 <script>
-// Premium subtle hacker effect
+// Live moving glowing dots (බෝල බෝල effect)
 const canvas = document.getElementById('bgCanvas');
 const ctx = canvas.getContext('2d');
 let width = canvas.width = window.innerWidth;
 let height = canvas.height = window.innerHeight;
 
-const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%';
-const fontSize = 14;
-const columns = Math.floor(width / fontSize);
-const drops = Array(columns).fill(height);
-
-function draw() {
-    ctx.fillStyle = 'rgba(17,17,17,0.08)';
-    ctx.fillRect(0,0,width,height);
-    ctx.fillStyle = '#b19cd9';
-    ctx.font = fontSize+'px monospace';
-    for(let i=0;i<drops.length;i++){
-        const text = letters[Math.floor(Math.random()*letters.length)];
-        ctx.fillText(text, i*fontSize, drops[i]*fontSize);
-        if(drops[i]*fontSize < 0 && Math.random() > 0.975) drops[i] = height/fontSize;
-        drops[i] -= 2;
+class Dot {
+    constructor(){
+        this.x = Math.random()*width;
+        this.y = Math.random()*height;
+        this.radius = Math.random()*3 + 1;
+        this.vx = (Math.random()-0.5)*1.5;
+        this.vy = (Math.random()-0.5)*1.5;
+        this.color = `rgba(177,156,217,${Math.random()*0.7+0.3})`;
     }
-    requestAnimationFrame(draw);
+    update(){
+        this.x += this.vx;
+        this.y += this.vy;
+        if(this.x<0||this.x>width) this.vx*=-1;
+        if(this.y<0||this.y>height) this.vy*=-1;
+    }
+    draw(){
+        ctx.beginPath();
+        ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
+        ctx.fillStyle=this.color;
+        ctx.fill();
+    }
 }
-draw();
+
+const dots = [];
+const dotCount = 120;
+for(let i=0;i<dotCount;i++){ dots.push(new Dot()); }
+
+function animate(){
+    ctx.clearRect(0,0,width,height);
+    dots.forEach(d=>{ d.update(); d.draw(); });
+    requestAnimationFrame(animate);
+}
+animate();
 
 window.addEventListener('resize',()=>{
     width=canvas.width=window.innerWidth;
