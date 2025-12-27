@@ -20,6 +20,22 @@ a { text-decoration:none; color: inherit; }
     z-index:-1;
 }
 
+/* ANIMATION */
+.fade-in {
+    opacity:0;
+    transform: translateY(20px);
+    animation: fadeInAnim 1s forwards;
+}
+.fade-in:nth-child(1){ animation-delay: 0.2s; }
+.fade-in:nth-child(2){ animation-delay: 0.4s; }
+.fade-in:nth-child(3){ animation-delay: 0.6s; }
+.fade-in:nth-child(4){ animation-delay: 0.8s; }
+.fade-in:nth-child(5){ animation-delay: 1s; }
+
+@keyframes fadeInAnim {
+    to { opacity:1; transform: translateY(0); }
+}
+
 /* HEADER */
 header {
     padding: 40px 20px;
@@ -97,7 +113,7 @@ header {
 .service-box p { font-size:14px; color:#ccc; line-height:1.5; }
 
 /* GROUP SECTION */
-.group-section { padding:50px 20px; max-width:1000px; margin:auto; }
+.group-section { padding:50px 20px; max-width:600px; margin:auto; }
 .section-title { font-size:28px; margin-bottom:25px; color:#ff4444; text-shadow:0 0 10px #ff0000; }
 .group-card {
     background: rgba(255,0,0,0.05);
@@ -105,23 +121,25 @@ header {
     padding:20px;
     border-radius:20px;
     display:flex;
-    justify-content: space-between;
+    justify-content:center;
     align-items:center;
     margin-bottom:15px;
     box-shadow:0 0 15px #ff0000;
     transition: all 0.3s ease;
 }
 .group-card:hover { transform: translateY(-5px); box-shadow:0 0 30px #ff0000; }
+.group-info { text-align:center; margin-right:0; }
 .group-info .category { display:block; font-size:14px; color:#ff7777; }
 .group-info .title { font-size:18px; font-weight:700; color:#fff; }
 .join-btn, .follow-btn {
-    padding:10px 20px;
+    padding:10px 25px;
     border-radius:25px;
     font-weight:700;
     text-transform: uppercase;
     background: linear-gradient(135deg,#ff0000,#000);
     color:#fff;
     transition:0.3s;
+    margin-left:20px;
 }
 .join-btn:hover, .follow-btn:hover {
     background: linear-gradient(135deg,#000,#ff0000);
@@ -174,10 +192,7 @@ footer {
     header{ font-size:28px; }
     .caption-box h2{ font-size:24px; }
     .btn{ font-size:16px; padding:12px 30px; }
-    .group-card, .admin-card{ flex-direction:column; align-items:flex-start; gap:10px; }
-    .group-info, .admin-info{text-align:left;}
 }
-
 </style>
 </head>
 <body>
@@ -189,7 +204,7 @@ footer {
   <div id="info">Loading IP & Battery...</div>
 </header>
 
-<div class="caption-box">
+<div class="caption-box fade-in">
   <h2>Download • Request • Connect</h2>
   <p>ඔයාට ඕන Movies, Services, Tools එකම තැනකින්</p>
   <div class="btn-group">
@@ -200,53 +215,32 @@ footer {
 
 <!-- SERVICES -->
 <section class="services">
-  <div class="service-box">
+  <div class="service-box fade-in">
     <h3>💻 Code Developer</h3>
     <p>Web development, automation scripts, bots, APIs & more</p>
   </div>
-  <div class="service-box">
+  <div class="service-box fade-in">
     <h3>🎨 Photo Editor</h3>
     <p>Creative designs, posters, banners, thumbnails & social media graphics</p>
   </div>
-  <div class="service-box">
+  <div class="service-box fade-in">
     <h3>🤖 WhatsApp Bot</h3>
     <p>Interactive bots, automation, status downloaders, and custom commands</p>
   </div>
-  <div class="service-box">
+  <div class="service-box fade-in">
     <h3>⚠️ Spam Tool</h3>
     <p>Testing, security research tools & message automation scripts</p>
   </div>
-  <div class="service-box">
+  <div class="service-box fade-in">
     <h3>🦠 Virus Tool</h3>
     <p>Cybersecurity simulations, safe virus testing & ethical hacking tools</p>
   </div>
 </section>
 
 <!-- GROUP SECTION -->
-<section class="group-section">
+<section class="group-section fade-in">
     <h2 class="section-title">📍 Join Our Categories</h2>
-    <div class="group-card">
-        <div class="group-info">
-            <span class="category">Movie Only 🎬</span>
-            <span class="title">Community Link</span>
-        </div>
-        <a href="https://chat.whatsapp.com/JbkNkthbyHVJhBdGGiPnLN?mode=wwt" class="join-btn">JOIN US</a>
-    </div>
-    <div class="group-card">
-        <div class="group-info">
-            <span class="category">Movie Only 🎬</span>
-            <span class="title">Group Link</span>
-        </div>
-        <a href="https://chat.whatsapp.com/J3naslGyDDyGtHHQyAVQpW" class="join-btn">JOIN US</a>
-    </div>
-    <div class="group-card">
-        <div class="group-info">
-            <span class="category">TV-Series Only 📺</span>
-            <span class="title">TV-Series Community</span>
-        </div>
-        <a href="https://chat.whatsapp.com/IcjVWaOg52IJaX75pAQJr2" class="join-btn">JOIN US</a>
-    </div>
-    <div class="group-card channel-card">
+    <div class="group-card fade-in">
         <div class="group-info">
             <span class="category">Official Channel 📢</span>
             <span class="title">Follow Our Updates</span>
@@ -256,9 +250,9 @@ footer {
 </section>
 
 <!-- ADMIN SECTION -->
-<section class="admin-section">
+<section class="admin-section fade-in">
     <h2 class="section-title">🛡️ Management Team</h2>
-    <div class="admin-card owner">
+    <div class="admin-card owner fade-in">
         <div class="admin-icon">👤</div>
         <div class="admin-info">
             <span class="role">Group Owner</span>
@@ -268,7 +262,7 @@ footer {
     </div>
 </section>
 
-<footer>
+<footer class="fade-in">
     <p>© 2026 LUXALGO OFFICIAL. All Rights Reserved.</p>
 </footer>
 
