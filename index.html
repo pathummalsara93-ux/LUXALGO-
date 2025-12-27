@@ -8,7 +8,7 @@
 <style>
 /* GLOBAL */
 * { box-sizing: border-box; margin:0; padding:0; }
-body, html { height: 100%; font-family: 'Segoe UI', Arial, sans-serif; overflow-x: hidden; color:#fff; background:#0d0d0d; }
+body, html { height: 100%; font-family: 'Segoe UI', Arial, sans-serif; overflow-x: hidden; color:#0f0; background:#000; }
 a { text-decoration:none; color: inherit; }
 
 /* CANVAS BACKGROUND */
@@ -41,9 +41,9 @@ header {
     padding: 40px 20px;
     font-size: 40px;
     font-weight: 700;
-    color:#ff0000;
+    color:#0f0;
     text-transform: uppercase;
-    text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
+    text-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0;
     text-align: center;
 }
 
@@ -51,23 +51,23 @@ header {
 #info {
     margin-top: 10px;
     font-size: 16px;
-    color: #ff4444;
+    color: #0f0;
 }
 
 /* CAPTION BOX */
 .caption-box {
-    background: rgba(255,0,0,0.05);
+    background: rgba(0,255,0,0.05);
     backdrop-filter: blur(12px);
     padding: 40px 30px;
     margin: 20px auto;
     border-radius: 25px;
     max-width: 650px;
-    box-shadow: 0 0 25px rgba(255,0,0,0.3),0 0 50px rgba(0,0,0,0.2);
+    box-shadow: 0 0 25px rgba(0,255,0,0.3),0 0 50px rgba(0,0,0,0.2);
     text-align: center;
 }
 
-.caption-box h2 { font-size:30px; color:#ff5555; margin-bottom:15px; }
-.caption-box p { font-size:16px; color:#ccc; margin-bottom:25px; }
+.caption-box h2 { font-size:30px; color:#0f0; margin-bottom:15px; }
+.caption-box p { font-size:16px; color:#0f0; margin-bottom:25px; }
 
 /* BUTTONS */
 .btn-group { display:flex; justify-content:center; gap:25px; flex-wrap: wrap; }
@@ -79,14 +79,14 @@ header {
     border:2px solid transparent;
     cursor:pointer;
     transition: all 0.4s ease;
-    background: linear-gradient(135deg,#ff0000,#000);
-    color:#fff;
+    background: linear-gradient(135deg,#0f0,#000);
+    color:#000;
     text-transform: uppercase;
-    box-shadow: 0 0 15px #ff0000,0 0 30px #000;
+    box-shadow: 0 0 15px #0f0,0 0 30px #000;
 }
 .btn:hover {
-    background: linear-gradient(135deg,#000,#ff0000);
-    box-shadow: 0 0 25px #ff0000,0 0 50px #000;
+    background: linear-gradient(135deg,#000,#0f0);
+    box-shadow: 0 0 25px #0f0,0 0 50px #000;
     transform: translateY(-5px) scale(1.05);
 }
 
@@ -100,23 +100,23 @@ header {
     gap:30px;
 }
 .service-box {
-    background: rgba(255,0,0,0.05);
+    background: rgba(0,255,0,0.05);
     backdrop-filter: blur(12px);
     padding:40px 20px;
     border-radius:25px;
     text-align:center;
-    box-shadow:0 0 20px #ff0000;
+    box-shadow:0 0 20px #0f0;
     transition: all 0.3s ease;
 }
-.service-box:hover { transform: translateY(-8px); box-shadow:0 0 35px #ff0000; }
-.service-box h3 { font-size:20px; color:#ff5555; margin-bottom:10px; text-shadow:0 0 5px #ff0000; }
-.service-box p { font-size:14px; color:#ccc; line-height:1.5; }
+.service-box:hover { transform: translateY(-8px); box-shadow:0 0 35px #0f0; }
+.service-box h3 { font-size:20px; color:#0f0; margin-bottom:10px; text-shadow:0 0 5px #0f0; }
+.service-box p { font-size:14px; color:#0f0; line-height:1.5; }
 
 /* GROUP SECTION */
 .group-section { padding:50px 20px; max-width:600px; margin:auto; }
-.section-title { font-size:28px; margin-bottom:25px; color:#ff4444; text-shadow:0 0 10px #ff0000; }
+.section-title { font-size:28px; margin-bottom:25px; color:#0f0; text-shadow:0 0 10px #0f0; }
 .group-card {
-    background: rgba(255,0,0,0.05);
+    background: rgba(0,255,0,0.05);
     backdrop-filter: blur(10px);
     padding:20px;
     border-radius:20px;
@@ -124,32 +124,32 @@ header {
     justify-content:center;
     align-items:center;
     margin-bottom:15px;
-    box-shadow:0 0 15px #ff0000;
+    box-shadow:0 0 15px #0f0;
     transition: all 0.3s ease;
 }
-.group-card:hover { transform: translateY(-5px); box-shadow:0 0 30px #ff0000; }
+.group-card:hover { transform: translateY(-5px); box-shadow:0 0 30px #0f0; }
 .group-info { text-align:center; margin-right:0; }
-.group-info .category { display:block; font-size:14px; color:#ff7777; }
+.group-info .category { display:block; font-size:14px; color:#0f0; }
 .group-info .title { font-size:18px; font-weight:700; color:#fff; }
 .join-btn, .follow-btn {
     padding:10px 25px;
     border-radius:25px;
     font-weight:700;
     text-transform: uppercase;
-    background: linear-gradient(135deg,#ff0000,#000);
-    color:#fff;
+    background: linear-gradient(135deg,#0f0,#000);
+    color:#000;
     transition:0.3s;
     margin-left:20px;
 }
 .join-btn:hover, .follow-btn:hover {
-    background: linear-gradient(135deg,#000,#ff0000);
-    box-shadow:0 0 20px #ff0000;
+    background: linear-gradient(135deg,#000,#0f0);
+    box-shadow:0 0 20px #0f0;
 }
 
 /* ADMIN SECTION */
 .admin-section { padding:50px 20px; max-width:900px; margin:auto; }
 .admin-card {
-    background: rgba(255,0,0,0.05);
+    background: rgba(0,255,0,0.05);
     backdrop-filter: blur(10px);
     padding:20px;
     border-radius:20px;
@@ -157,33 +157,33 @@ header {
     align-items:center;
     justify-content: space-between;
     margin-bottom:15px;
-    box-shadow:0 0 15px #ff0000;
+    box-shadow:0 0 15px #0f0;
     transition: all 0.3s ease;
 }
-.admin-card:hover { transform: translateY(-5px); box-shadow:0 0 30px #ff0000; }
+.admin-card:hover { transform: translateY(-5px); box-shadow:0 0 30px #0f0; }
 .admin-icon { font-size:36px; margin-right:15px; }
 .admin-info { text-align:left; flex:1; }
-.admin-info .role { display:block; font-size:14px; color:#ff7777; }
+.admin-info .role { display:block; font-size:14px; color:#0f0; }
 .admin-info .name { font-size:18px; font-weight:700; color:#fff; }
 .wa-btn {
     padding:10px 20px;
     border-radius:25px;
     font-weight:700;
     text-transform: uppercase;
-    background: linear-gradient(135deg,#ff0000,#000);
-    color:#fff;
+    background: linear-gradient(135deg,#0f0,#000);
+    color:#000;
     transition:0.3s;
 }
-.wa-btn:hover { background: linear-gradient(135deg,#000,#ff0000); box-shadow:0 0 20px #ff0000; }
+.wa-btn:hover { background: linear-gradient(135deg,#000,#0f0); box-shadow:0 0 20px #0f0; }
 
 /* FOOTER */
 footer {
     padding:25px;
     background:#111;
     font-size:14px;
-    color:#aaa;
-    text-shadow:0 0 5px #ff4444;
-    border-top:1px solid rgba(255,0,0,0.2);
+    color:#0f0;
+    text-shadow:0 0 5px #0f0;
+    border-top:1px solid rgba(0,255,0,0.2);
     text-align:center;
 }
 
@@ -242,10 +242,17 @@ footer {
     <h2 class="section-title">📍 Join Our Categories</h2>
     <div class="group-card fade-in">
         <div class="group-info">
+            <span class="category">Movie Only 🎬</span>
+            <span class="title">LT MOVIE HUB</span>
+        </div>
+        <a href="https://chat.whatsapp.com/EsBTIhmD5Jd8poIDWYbsZ5?mode=hqrc" class="join-btn">JOIN US</a>
+    </div>
+    <div class="group-card fade-in">
+        <div class="group-info">
             <span class="category">Official Channel 📢</span>
             <span class="title">Follow Our Updates</span>
         </div>
-        <a href="https://whatsapp.com/channel/0029Vb6oAn2EquiVw3u3Y63q/184" class="follow-btn">FOLLOW US</a>
+        <a href="https://whatsapp.com/channel/0029Vb7bwXEEAKWNJgBICJ0w" class="follow-btn">FOLLOW US</a>
     </div>
 </section>
 
@@ -267,50 +274,35 @@ footer {
 </footer>
 
 <script>
-// Animated red-black particle background
+// Hacker-style background (matrix green code)
 const canvas = document.getElementById('bgCanvas');
 const ctx = canvas.getContext('2d');
 let width = canvas.width = window.innerWidth;
 let height = canvas.height = window.innerHeight;
 
-const particles = [];
-const particleCount = 150;
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%';
+const fontSize = 16;
+const columns = Math.floor(width / fontSize);
+const drops = Array(columns).fill(1);
 
-class Particle {
-    constructor() { this.reset(); }
-    reset() {
-        this.x = Math.random()*width;
-        this.y = Math.random()*height;
-        this.vx = (Math.random()-0.5)*0.8;
-        this.vy = (Math.random()-0.5)*0.8;
-        this.size = Math.random()*3+1;
-        const r = Math.random()<0.5?255:0;
-        this.color = `rgba(${r},0,0,${Math.random()*0.6+0.2})`;
+function draw() {
+    ctx.fillStyle = 'rgba(0,0,0,0.05)';
+    ctx.fillRect(0,0,width,height);
+    ctx.fillStyle = '#0f0';
+    ctx.font = fontSize + 'px monospace';
+    for(let i=0;i<drops.length;i++){
+        const text = letters[Math.floor(Math.random()*letters.length)];
+        ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+        if(drops[i]*fontSize > height && Math.random() > 0.975) drops[i]=0;
+        drops[i]++;
     }
-    update() {
-        this.x += this.vx; this.y += this.vy;
-        if(this.x<0||this.x>width||this.y<0||this.y>height) this.reset();
-    }
-    draw() {
-        ctx.beginPath();
-        ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
-        ctx.fillStyle=this.color;
-        ctx.fill();
-    }
+    requestAnimationFrame(draw);
 }
-
-for(let i=0;i<particleCount;i++){ particles.push(new Particle()); }
-
-function animate(){
-    ctx.clearRect(0,0,width,height);
-    particles.forEach(p=>{ p.update(); p.draw(); });
-    requestAnimationFrame(animate);
-}
-animate();
+draw();
 
 window.addEventListener('resize',()=>{
-    width=canvas.width=window.innerWidth;
-    height=canvas.height=window.innerHeight;
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
 });
 
 // Display IP & Battery
