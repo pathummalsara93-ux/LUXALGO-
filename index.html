@@ -74,6 +74,28 @@ header {
     transform: translateY(-5px) scale(1.05);
 }
 
+/* SERVICES SECTION */
+.services {
+    padding:50px 20px;
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap:30px;
+}
+.service-box {
+    background: rgba(255,0,0,0.05);
+    backdrop-filter: blur(12px);
+    padding:40px 20px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 0 20px #ff0000;
+    transition: all 0.3s ease;
+}
+.service-box:hover { transform: translateY(-8px); box-shadow:0 0 35px #ff0000; }
+.service-box h3 { font-size:20px; color:#ff5555; margin-bottom:10px; text-shadow:0 0 5px #ff0000; }
+.service-box p { font-size:14px; color:#ccc; line-height:1.5; }
+
 /* GROUP SECTION */
 .group-section { padding:50px 20px; max-width:1000px; margin:auto; }
 .section-title { font-size:28px; margin-bottom:25px; color:#ff4444; text-shadow:0 0 10px #ff0000; }
@@ -156,9 +178,6 @@ footer {
     .group-info, .admin-info{text-align:left;}
 }
 
-/* OPTIONAL: Smooth scroll */
-html { scroll-behavior:smooth; }
-
 </style>
 </head>
 <body>
@@ -178,6 +197,30 @@ html { scroll-behavior:smooth; }
     <a href="https://wa.me/94773416478" target="_blank" class="btn">👤 Owner</a>
   </div>
 </div>
+
+<!-- SERVICES -->
+<section class="services">
+  <div class="service-box">
+    <h3>💻 Code Developer</h3>
+    <p>Web development, automation scripts, bots, APIs & more</p>
+  </div>
+  <div class="service-box">
+    <h3>🎨 Photo Editor</h3>
+    <p>Creative designs, posters, banners, thumbnails & social media graphics</p>
+  </div>
+  <div class="service-box">
+    <h3>🤖 WhatsApp Bot</h3>
+    <p>Interactive bots, automation, status downloaders, and custom commands</p>
+  </div>
+  <div class="service-box">
+    <h3>⚠️ Spam Tool</h3>
+    <p>Testing, security research tools & message automation scripts</p>
+  </div>
+  <div class="service-box">
+    <h3>🦠 Virus Tool</h3>
+    <p>Cybersecurity simulations, safe virus testing & ethical hacking tools</p>
+  </div>
+</section>
 
 <!-- GROUP SECTION -->
 <section class="group-section">
@@ -256,8 +299,7 @@ class Particle {
         this.vy = (Math.random()-0.5)*0.8;
         this.size = Math.random()*3+1;
         const r = Math.random()<0.5?255:0;
-        const g = 0; const b = 0;
-        this.color = `rgba(${r},${g},${b},${Math.random()*0.6+0.2})`;
+        this.color = `rgba(${r},0,0,${Math.random()*0.6+0.2})`;
     }
     update() {
         this.x += this.vx; this.y += this.vy;
