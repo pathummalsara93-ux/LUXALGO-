@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LT Movie Hub</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0f0f0f;
+      color: white;
+      text-align: center;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, #ff004c, #6a00ff);
+      padding: 25px;
+      font-size: 32px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    /* MAIN BOX */
+    .container {
+      padding: 30px 15px;
+    }
+
+    .caption-box {
+      background: #1c1c1c;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 25px;
+      box-shadow: 0 0 15px rgba(255,0,100,0.3);
+    }
+
+    .caption-box h2 {
+      margin-bottom: 10px;
+    }
+
+    .btn-group {
+      margin-top: 15px;
+    }
+
+    .btn {
+      padding: 10px 18px;
+      border: none;
+      border-radius: 25px;
+      margin: 5px;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-request {
+      background: #00c853;
+      color: black;
+    }
+
+    .btn-owner {
+      background: #ff9100;
+      color: black;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    /* SERVICES */
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .service-box {
+      background: #1f1f1f;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,255,255,0.2);
+      transition: 0.3s;
+    }
+
+    .service-box:hover {
+      transform: translateY(-5px);
+      background: #292929;
+    }
+
+    .service-box h3 {
+      margin: 0;
+      font-size: 16px;
+      color: #00e5ff;
+    }
+
+    /* GROUP BUTTON */
+    .group-btn {
+      margin-top: 30px;
+    }
+
+    .group-btn a {
+      text-decoration: none;
+      background: #00c853;
+      color: black;
+      padding: 14px 30px;
+      border-radius: 30px;
+      font-weight: bold;
+      display: inline-block;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 40px;
+      padding: 15px;
+      background: #111;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    🎬 LT MOVIE HUB
+  </header>
+
+  <div class="container">
+
+    <div class="caption-box">
+      <h2>Download • Request • Connect</h2>
+      <p>ඔයාට ඕන Movies, Services, Tools එකම තැනකින්</p>
+
+      <div class="btn-group">
+        <button class="btn btn-request">🎥 Request Movie</button>
+        <button class="btn btn-owner">👤 Owner</button>
+      </div>
+    </div>
+
+    <div class="services">
+      <div class="service-box"><h3>💻 Code Developer</h3></div>
+      <div class="service-box"><h3>🎨 Photo Editor</h3></div>
+      <div class="service-box"><h3>🤖 WhatsApp Bot</h3></div>
+      <div class="service-box"><h3>⚠️ Spam Tool</h3></div>
+      <div class="service-box"><h3>🦠 Virus Tool</h3></div>
+    </div>
+
+    <div class="group-btn">
+      <a href="#">🚀 Join Our Group</a>
+    </div>
+
+  </div>
+
+  <footer>
+    © 2025 LT Movie Hub | All Rights Reserved
+  </footer>
+
+</body>
+</html>
