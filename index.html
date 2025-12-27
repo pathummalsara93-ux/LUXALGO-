@@ -52,6 +52,9 @@
       font-size: 15px;
       cursor: pointer;
       transition: 0.3s;
+      display: inline-block;
+      text-decoration: none;
+      text-align: center;
     }
 
     .btn-request {
@@ -72,17 +75,23 @@
     /* SERVICES */
     .services {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
       margin-top: 30px;
     }
 
     .service-box {
       background: #1f1f1f;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,255,255,0.2);
+      padding: 40px 20px; /* bigger padding */
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.2);
       transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 180px; /* same height for all boxes */
+      text-align: center;
     }
 
     .service-box:hover {
@@ -91,9 +100,16 @@
     }
 
     .service-box h3 {
-      margin: 0;
-      font-size: 16px;
+      margin: 10px 0 0 0;
+      font-size: 18px;
       color: #00e5ff;
+    }
+
+    .service-box p {
+      font-size: 14px;
+      color: #ccc;
+      margin-top: 8px;
+      line-height: 1.4;
     }
 
     /* GROUP BUTTON */
@@ -109,6 +125,12 @@
       border-radius: 30px;
       font-weight: bold;
       display: inline-block;
+      transition: 0.3s;
+    }
+
+    .group-btn a:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
     }
 
     /* FOOTER */
@@ -135,17 +157,32 @@
       <p>ඔයාට ඕන Movies, Services, Tools එකම තැනකින්</p>
 
       <div class="btn-group">
-        <button class="btn btn-request">🎥 Request Movie</button>
-        <button class="btn btn-owner">👤 Owner</button>
+        <a href="https://lt-film.vercel.app/" target="_blank" class="btn btn-request">🎥 Request Movie</a>
+        <a href="https://wa.me/94773416478" target="_blank" class="btn btn-owner">👤 Owner</a>
       </div>
     </div>
 
     <div class="services">
-      <div class="service-box"><h3>💻 Code Developer</h3></div>
-      <div class="service-box"><h3>🎨 Photo Editor</h3></div>
-      <div class="service-box"><h3>🤖 WhatsApp Bot</h3></div>
-      <div class="service-box"><h3>⚠️ Spam Tool</h3></div>
-      <div class="service-box"><h3>🦠 Virus Tool</h3></div>
+      <div class="service-box">
+        <h3>💻 Code Developer</h3>
+        <p>Web development, automation scripts, bots, APIs & more</p>
+      </div>
+      <div class="service-box">
+        <h3>🎨 Photo Editor</h3>
+        <p>Creative designs, posters, banners, thumbnails & social media graphics</p>
+      </div>
+      <div class="service-box">
+        <h3>🤖 WhatsApp Bot</h3>
+        <p>Interactive bots, automation, status downloaders, and custom commands</p>
+      </div>
+      <div class="service-box">
+        <h3>⚠️ Spam Tool</h3>
+        <p>Testing, security research tools & message automation scripts</p>
+      </div>
+      <div class="service-box">
+        <h3>🦠 Virus Tool</h3>
+        <p>Cybersecurity simulations, safe virus testing & ethical hacking tools</p>
+      </div>
     </div>
 
     <div class="group-btn">
