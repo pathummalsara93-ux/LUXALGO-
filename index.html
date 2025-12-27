@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LT Movie Hub</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<title>LUXALGO OFFICIAL>
 
 <style>
   /* GLOBAL */
   * { box-sizing: border-box; margin:0; padding:0; }
-  body, html { height: 100%; font-family: 'Orbitron', sans-serif; overflow-x: hidden; }
+  body, html { height: 100%; font-family: 'Segoe UI', 'Arial', sans-serif; overflow-x: hidden; }
   body { color:#fff; text-align:center; background:#0d0d0d; }
+
+  a { text-decoration:none; color: inherit; }
 
   /* CANVAS BACKGROUND */
   #bgCanvas {
@@ -76,7 +77,7 @@
   /* SERVICES */
   .services {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
     gap:25px;
     margin:40px 20px;
     position: relative;
@@ -85,11 +86,11 @@
 
   .service-box {
     background: rgba(255,255,255,0.03);
-    padding:35px 20px;
+    padding:40px 20px;
     border-radius:20px;
-    min-height:220px;
+    min-height:240px;
     display:flex;
-    flex-direction:column;
+    flex-direction: column;
     justify-content:center;
     align-items:center;
     backdrop-filter: blur(12px);
@@ -207,24 +208,21 @@
   let height = canvas.height = window.innerHeight;
 
   const particles = [];
-  const particleCount = 120;
+  const particleCount = 150;
 
   class Particle {
-    constructor() {
-      this.reset();
-    }
+    constructor() { this.reset(); }
     reset() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.7;
-      this.vy = (Math.random() - 0.5) * 0.7;
-      this.size = Math.random() * 3 + 1;
+      this.x = Math.random()*width;
+      this.y = Math.random()*height;
+      this.vx = (Math.random()-0.5)*0.7;
+      this.vy = (Math.random()-0.5)*0.7;
+      this.size = Math.random()*3 + 1;
       this.color = `rgba(0,255,255,${Math.random()*0.5+0.3})`;
     }
     update() {
-      this.x += this.vx;
-      this.y += this.vy;
-      if(this.x<0||this.x>width||this.y<0||this.y>height){ this.reset(); }
+      this.x += this.vx; this.y += this.vy;
+      if(this.x<0||this.x>width||this.y<0||this.y>height) this.reset();
     }
     draw() {
       ctx.beginPath();
@@ -238,17 +236,14 @@
 
   function animate(){
     ctx.clearRect(0,0,width,height);
-    particles.forEach(p=>{
-      p.update();
-      p.draw();
-    });
+    particles.forEach(p=>{ p.update(); p.draw(); });
     requestAnimationFrame(animate);
   }
   animate();
 
   window.addEventListener('resize',()=>{
-    width=canvas.width=window.innerWidth;
-    height=canvas.height=window.innerHeight;
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
   });
 </script>
 
