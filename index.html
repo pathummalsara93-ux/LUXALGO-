@@ -1,236 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LT Movie Hub</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LT Movie Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
-  <style>
-    /* GLOBAL */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+  /* GLOBAL */
+  * { box-sizing: border-box; margin:0; padding:0; }
+  body, html { height: 100%; font-family: 'Orbitron', sans-serif; overflow-x: hidden; }
+  body { color:#fff; text-align:center; background:#0d0d0d; }
 
-    body {
-      font-family: 'Orbitron', sans-serif;
-      background: #0d0d0d;
-      color: #fff;
-      line-height: 1.5;
-      text-align: center;
-    }
+  /* CANVAS BACKGROUND */
+  #bgCanvas {
+    position: fixed;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    z-index:-1;
+  }
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+  /* HEADER */
+  header {
+    padding: 30px 20px;
+    font-size: 36px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ff00ff, #00ffff);
+    color: #fff;
+    text-shadow: 0 0 10px #ff00ff,0 0 20px #00ffff,0 0 30px #ff00ff;
+    letter-spacing: 2px;
+    border-bottom:2px solid rgba(255,255,255,0.1);
+    position: relative;
+    z-index: 1;
+  }
 
-    /* HEADER */
-    header {
-      padding: 30px 20px;
-      font-size: 36px;
-      font-weight: 700;
-      background: linear-gradient(135deg, #ff00ff, #00ffff);
-      color: #fff;
-      text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ff00ff;
-      letter-spacing: 2px;
-      border-bottom: 2px solid rgba(255,255,255,0.1);
-    }
+  /* CAPTION BOX */
+  .caption-box {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    padding: 30px;
+    margin: 30px auto;
+    border-radius: 20px;
+    max-width: 600px;
+    box-shadow: 0 0 20px rgba(0,255,255,0.2),0 0 40px rgba(255,0,255,0.2);
+    position: relative;
+    z-index: 1;
+  }
 
-    /* CAPTION BOX */
-    .caption-box {
-      background: rgba(255,255,255,0.05);
-      backdrop-filter: blur(10px);
-      padding: 30px;
-      margin: 30px auto;
-      border-radius: 20px;
-      max-width: 600px;
-      box-shadow: 0 0 20px rgba(0,255,255,0.2), 0 0 40px rgba(255,0,255,0.2);
-    }
+  .caption-box h2 { font-size:28px; color:#00ffff; margin-bottom:10px; }
+  .caption-box p { font-size:16px; color:#ccc; margin-bottom:20px; }
 
-    .caption-box h2 {
-      font-size: 28px;
-      color: #00ffff;
-      margin-bottom: 10px;
-    }
+  /* BUTTONS */
+  .btn-group { display:flex; justify-content:center; gap:20px; flex-wrap: wrap; }
+  .btn {
+    padding:12px 28px;
+    border-radius: 30px;
+    font-size:16px;
+    font-weight:700;
+    border:2px solid transparent;
+    cursor:pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0,255,255,0.3);
+    background: linear-gradient(135deg,#00ffea,#00aaff);
+    color:#000;
+    text-transform: uppercase;
+    display:inline-block;
+  }
+  .btn:hover {
+    background: linear-gradient(135deg,#ff00ff,#ffea00);
+    box-shadow: 0 0 20px #ff00ff,0 0 40px #ffea00;
+    transform: translateY(-3px);
+  }
 
-    .caption-box p {
-      font-size: 16px;
-      color: #ccc;
-      margin-bottom: 20px;
-    }
+  /* SERVICES */
+  .services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap:25px;
+    margin:40px 20px;
+    position: relative;
+    z-index:1;
+  }
 
-    .btn-group {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+  .service-box {
+    background: rgba(255,255,255,0.03);
+    padding:35px 20px;
+    border-radius:20px;
+    min-height:220px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    backdrop-filter: blur(12px);
+    box-shadow:0 0 15px rgba(0,255,255,0.2),0 0 25px rgba(255,0,255,0.2);
+    transition: all 0.3s ease;
+    text-align:center;
+  }
 
-    .btn {
-      padding: 12px 28px;
-      border-radius: 30px;
-      font-size: 16px;
-      font-weight: 700;
-      border: 2px solid transparent;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 10px rgba(0,255,255,0.3);
-      background: linear-gradient(135deg, #00ffea, #00aaff);
-      color: #000;
-      text-transform: uppercase;
-    }
+  .service-box h3 {
+    font-size:18px;
+    color:#00ffff;
+    margin-bottom:10px;
+    text-shadow:0 0 5px #00ffff;
+  }
 
-    .btn:hover {
-      background: linear-gradient(135deg, #ff00ff, #ffea00);
-      box-shadow: 0 0 20px #ff00ff, 0 0 40px #ffea00;
-      color: #000;
-      transform: translateY(-3px);
-    }
+  .service-box p { font-size:14px; color:#ccc; line-height:1.4; }
 
-    /* SERVICES */
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 25px;
-      margin: 40px 20px;
-    }
+  .service-box:hover {
+    transform: translateY(-8px);
+    box-shadow:0 0 25px #00ffff,0 0 50px #ff00ff;
+    background: rgba(255,255,255,0.07);
+  }
 
-    .service-box {
-      background: rgba(255,255,255,0.03);
-      padding: 35px 20px;
-      border-radius: 20px;
-      min-height: 220px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 0 15px rgba(0,255,255,0.2), 0 0 25px rgba(255,0,255,0.2);
-      transition: all 0.3s ease;
-      text-align: center;
-    }
+  /* GROUP BUTTON */
+  .group-btn { margin:40px 0; position:relative; z-index:1; }
+  .group-btn a {
+    display:inline-block;
+    padding:16px 40px;
+    border-radius:50px;
+    font-size:18px;
+    font-weight:700;
+    text-transform:uppercase;
+    background: linear-gradient(135deg,#ff00ff,#00ffff);
+    color:#000;
+    box-shadow:0 0 20px #ff00ff,0 0 40px #00ffff;
+    transition: all 0.3s ease;
+  }
+  .group-btn a:hover {
+    transform:translateY(-5px);
+    box-shadow:0 0 35px #ff00ff,0 0 60px #00ffff;
+    background: linear-gradient(135deg,#00ffff,#ff00ff);
+    color:#000;
+  }
 
-    .service-box h3 {
-      font-size: 18px;
-      color: #00ffff;
-      margin-bottom: 10px;
-      text-shadow: 0 0 5px #00ffff;
-    }
+  /* FOOTER */
+  footer {
+    padding:20px;
+    background:#111;
+    font-size:14px;
+    color:#aaa;
+    text-shadow:0 0 5px #00ffff;
+    border-top:1px solid rgba(255,255,255,0.1);
+    position: relative;
+    z-index:1;
+  }
 
-    .service-box p {
-      font-size: 14px;
-      color: #ccc;
-      line-height: 1.4;
-    }
-
-    .service-box:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 0 25px #00ffff, 0 0 50px #ff00ff;
-      background: rgba(255,255,255,0.07);
-    }
-
-    /* GROUP BUTTON */
-    .group-btn {
-      margin: 40px 0;
-    }
-
-    .group-btn a {
-      display: inline-block;
-      padding: 16px 40px;
-      border-radius: 50px;
-      font-size: 18px;
-      font-weight: 700;
-      text-transform: uppercase;
-      background: linear-gradient(135deg, #ff00ff, #00ffff);
-      color: #000;
-      box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
-      transition: all 0.3s ease;
-    }
-
-    .group-btn a:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 35px #ff00ff, 0 0 60px #00ffff;
-      background: linear-gradient(135deg, #00ffff, #ff00ff);
-      color: #000;
-    }
-
-    /* FOOTER */
-    footer {
-      padding: 20px;
-      background: #111;
-      font-size: 14px;
-      color: #aaa;
-      text-shadow: 0 0 5px #00ffff;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 600px){
-      header {
-        font-size: 28px;
-      }
-      .caption-box h2 {
-        font-size: 24px;
-      }
-      .btn {
-        font-size: 14px;
-        padding: 10px 22px;
-      }
-      .service-box {
-        min-height: 200px;
-      }
-    }
-  </style>
+  /* RESPONSIVE */
+  @media(max-width:600px){
+    header{ font-size:28px; }
+    .caption-box h2{ font-size:24px; }
+    .btn{ font-size:14px; padding:10px 22px; }
+    .service-box{ min-height:200px; }
+  }
+</style>
 </head>
 <body>
 
-  <header>
-    🎬 LT MOVIE HUB
-  </header>
+<canvas id="bgCanvas"></canvas>
 
-  <div class="caption-box">
-    <h2>Download • Request • Connect</h2>
-    <p>ඔයාට ඕන Movies, Services, Tools එකම තැනකින්</p>
+<header>🎬 LT MOVIE HUB</header>
 
-    <div class="btn-group">
-      <a href="https://lt-film.vercel.app/" target="_blank" class="btn">🎥 Request Movie</a>
-      <a href="https://wa.me/94773416478" target="_blank" class="btn">👤 Owner</a>
-    </div>
+<div class="caption-box">
+  <h2>Download • Request • Connect</h2>
+  <p>ඔයාට ඕන Movies, Services, Tools එකම තැනකින්</p>
+  <div class="btn-group">
+    <a href="https://lt-film.vercel.app/" target="_blank" class="btn">🎥 Request Movie</a>
+    <a href="https://wa.me/94773416478" target="_blank" class="btn">👤 Owner</a>
   </div>
+</div>
 
-  <div class="services">
-    <div class="service-box">
-      <h3>💻 Code Developer</h3>
-      <p>Web development, automation scripts, bots, APIs & more</p>
-    </div>
-    <div class="service-box">
-      <h3>🎨 Photo Editor</h3>
-      <p>Creative designs, posters, banners, thumbnails & social media graphics</p>
-    </div>
-    <div class="service-box">
-      <h3>🤖 WhatsApp Bot</h3>
-      <p>Interactive bots, automation, status downloaders, and custom commands</p>
-    </div>
-    <div class="service-box">
-      <h3>⚠️ Spam Tool</h3>
-      <p>Testing, security research tools & message automation scripts</p>
-    </div>
-    <div class="service-box">
-      <h3>🦠 Virus Tool</h3>
-      <p>Cybersecurity simulations, safe virus testing & ethical hacking tools</p>
-    </div>
+<div class="services">
+  <div class="service-box">
+    <h3>💻 Code Developer</h3>
+    <p>Web development, automation scripts, bots, APIs & more</p>
   </div>
-
-  <div class="group-btn">
-    <a href="#">🚀 Join Our Group</a>
+  <div class="service-box">
+    <h3>🎨 Photo Editor</h3>
+    <p>Creative designs, posters, banners, thumbnails & social media graphics</p>
   </div>
+  <div class="service-box">
+    <h3>🤖 WhatsApp Bot</h3>
+    <p>Interactive bots, automation, status downloaders, and custom commands</p>
+  </div>
+  <div class="service-box">
+    <h3>⚠️ Spam Tool</h3>
+    <p>Testing, security research tools & message automation scripts</p>
+  </div>
+  <div class="service-box">
+    <h3>🦠 Virus Tool</h3>
+    <p>Cybersecurity simulations, safe virus testing & ethical hacking tools</p>
+  </div>
+</div>
 
-  <footer>
-    © 2025 LT Movie Hub | All Rights Reserved
-  </footer>
+<div class="group-btn">
+  <a href="#">🚀 Join Our Group</a>
+</div>
+
+<footer>© 2025 LT Movie Hub | All Rights Reserved</footer>
+
+<script>
+  // Animated particle background
+  const canvas = document.getElementById('bgCanvas');
+  const ctx = canvas.getContext('2d');
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+
+  const particles = [];
+  const particleCount = 120;
+
+  class Particle {
+    constructor() {
+      this.reset();
+    }
+    reset() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.vx = (Math.random() - 0.5) * 0.7;
+      this.vy = (Math.random() - 0.5) * 0.7;
+      this.size = Math.random() * 3 + 1;
+      this.color = `rgba(0,255,255,${Math.random()*0.5+0.3})`;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if(this.x<0||this.x>width||this.y<0||this.y>height){ this.reset(); }
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+      ctx.fillStyle=this.color;
+      ctx.fill();
+    }
+  }
+
+  for(let i=0;i<particleCount;i++){ particles.push(new Particle()); }
+
+  function animate(){
+    ctx.clearRect(0,0,width,height);
+    particles.forEach(p=>{
+      p.update();
+      p.draw();
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
+
+  window.addEventListener('resize',()=>{
+    width=canvas.width=window.innerWidth;
+    height=canvas.height=window.innerHeight;
+  });
+</script>
 
 </body>
 </html>
