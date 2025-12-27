@@ -4,191 +4,228 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LT Movie Hub</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
 
   <style>
-    body {
+    /* GLOBAL */
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0f0f0f;
-      color: white;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      line-height: 1.5;
       text-align: center;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
     }
 
     /* HEADER */
     header {
-      background: linear-gradient(135deg, #ff004c, #6a00ff);
-      padding: 25px;
-      font-size: 32px;
-      font-weight: bold;
+      padding: 30px 20px;
+      font-size: 36px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #ff00ff, #00ffff);
+      color: #fff;
+      text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ff00ff;
       letter-spacing: 2px;
+      border-bottom: 2px solid rgba(255,255,255,0.1);
     }
 
-    /* MAIN BOX */
-    .container {
-      padding: 30px 15px;
-    }
-
+    /* CAPTION BOX */
     .caption-box {
-      background: #1c1c1c;
-      padding: 20px;
-      border-radius: 15px;
-      margin-bottom: 25px;
-      box-shadow: 0 0 15px rgba(255,0,100,0.3);
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      margin: 30px auto;
+      border-radius: 20px;
+      max-width: 600px;
+      box-shadow: 0 0 20px rgba(0,255,255,0.2), 0 0 40px rgba(255,0,255,0.2);
     }
 
     .caption-box h2 {
+      font-size: 28px;
+      color: #00ffff;
       margin-bottom: 10px;
     }
 
+    .caption-box p {
+      font-size: 16px;
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+
     .btn-group {
-      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
     .btn {
-      padding: 10px 18px;
-      border: none;
-      border-radius: 25px;
-      margin: 5px;
-      font-size: 15px;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: 700;
+      border: 2px solid transparent;
       cursor: pointer;
-      transition: 0.3s;
-      display: inline-block;
-      text-decoration: none;
-      text-align: center;
-    }
-
-    .btn-request {
-      background: #00c853;
-      color: black;
-    }
-
-    .btn-owner {
-      background: #ff9100;
-      color: black;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0,255,255,0.3);
+      background: linear-gradient(135deg, #00ffea, #00aaff);
+      color: #000;
+      text-transform: uppercase;
     }
 
     .btn:hover {
-      transform: scale(1.05);
-      opacity: 0.9;
+      background: linear-gradient(135deg, #ff00ff, #ffea00);
+      box-shadow: 0 0 20px #ff00ff, 0 0 40px #ffea00;
+      color: #000;
+      transform: translateY(-3px);
     }
 
     /* SERVICES */
     .services {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      margin: 40px 20px;
     }
 
     .service-box {
-      background: #1f1f1f;
-      padding: 40px 20px; /* bigger padding */
+      background: rgba(255,255,255,0.03);
+      padding: 35px 20px;
       border-radius: 20px;
-      box-shadow: 0 0 15px rgba(0,255,255,0.2);
-      transition: 0.3s;
+      min-height: 220px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      min-height: 180px; /* same height for all boxes */
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 15px rgba(0,255,255,0.2), 0 0 25px rgba(255,0,255,0.2);
+      transition: all 0.3s ease;
       text-align: center;
     }
 
-    .service-box:hover {
-      transform: translateY(-5px);
-      background: #292929;
-    }
-
     .service-box h3 {
-      margin: 10px 0 0 0;
       font-size: 18px;
-      color: #00e5ff;
+      color: #00ffff;
+      margin-bottom: 10px;
+      text-shadow: 0 0 5px #00ffff;
     }
 
     .service-box p {
       font-size: 14px;
       color: #ccc;
-      margin-top: 8px;
       line-height: 1.4;
+    }
+
+    .service-box:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 25px #00ffff, 0 0 50px #ff00ff;
+      background: rgba(255,255,255,0.07);
     }
 
     /* GROUP BUTTON */
     .group-btn {
-      margin-top: 30px;
+      margin: 40px 0;
     }
 
     .group-btn a {
-      text-decoration: none;
-      background: #00c853;
-      color: black;
-      padding: 14px 30px;
-      border-radius: 30px;
-      font-weight: bold;
       display: inline-block;
-      transition: 0.3s;
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #ff00ff, #00ffff);
+      color: #000;
+      box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
+      transition: all 0.3s ease;
     }
 
     .group-btn a:hover {
-      transform: scale(1.05);
-      opacity: 0.9;
+      transform: translateY(-5px);
+      box-shadow: 0 0 35px #ff00ff, 0 0 60px #00ffff;
+      background: linear-gradient(135deg, #00ffff, #ff00ff);
+      color: #000;
     }
 
     /* FOOTER */
     footer {
-      margin-top: 40px;
-      padding: 15px;
+      padding: 20px;
       background: #111;
       font-size: 14px;
       color: #aaa;
+      text-shadow: 0 0 5px #00ffff;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px){
+      header {
+        font-size: 28px;
+      }
+      .caption-box h2 {
+        font-size: 24px;
+      }
+      .btn {
+        font-size: 14px;
+        padding: 10px 22px;
+      }
+      .service-box {
+        min-height: 200px;
+      }
     }
   </style>
 </head>
-
 <body>
 
   <header>
     🎬 LT MOVIE HUB
   </header>
 
-  <div class="container">
+  <div class="caption-box">
+    <h2>Download • Request • Connect</h2>
+    <p>ඔයාට ඕන Movies, Services, Tools එකම තැනකින්</p>
 
-    <div class="caption-box">
-      <h2>Download • Request • Connect</h2>
-      <p>ඔයාට ඕන Movies, Services, Tools එකම තැනකින්</p>
-
-      <div class="btn-group">
-        <a href="https://lt-film.vercel.app/" target="_blank" class="btn btn-request">🎥 Request Movie</a>
-        <a href="https://wa.me/94773416478" target="_blank" class="btn btn-owner">👤 Owner</a>
-      </div>
+    <div class="btn-group">
+      <a href="https://lt-film.vercel.app/" target="_blank" class="btn">🎥 Request Movie</a>
+      <a href="https://wa.me/94773416478" target="_blank" class="btn">👤 Owner</a>
     </div>
+  </div>
 
-    <div class="services">
-      <div class="service-box">
-        <h3>💻 Code Developer</h3>
-        <p>Web development, automation scripts, bots, APIs & more</p>
-      </div>
-      <div class="service-box">
-        <h3>🎨 Photo Editor</h3>
-        <p>Creative designs, posters, banners, thumbnails & social media graphics</p>
-      </div>
-      <div class="service-box">
-        <h3>🤖 WhatsApp Bot</h3>
-        <p>Interactive bots, automation, status downloaders, and custom commands</p>
-      </div>
-      <div class="service-box">
-        <h3>⚠️ Spam Tool</h3>
-        <p>Testing, security research tools & message automation scripts</p>
-      </div>
-      <div class="service-box">
-        <h3>🦠 Virus Tool</h3>
-        <p>Cybersecurity simulations, safe virus testing & ethical hacking tools</p>
-      </div>
+  <div class="services">
+    <div class="service-box">
+      <h3>💻 Code Developer</h3>
+      <p>Web development, automation scripts, bots, APIs & more</p>
     </div>
-
-    <div class="group-btn">
-      <a href="#">🚀 Join Our Group</a>
+    <div class="service-box">
+      <h3>🎨 Photo Editor</h3>
+      <p>Creative designs, posters, banners, thumbnails & social media graphics</p>
     </div>
+    <div class="service-box">
+      <h3>🤖 WhatsApp Bot</h3>
+      <p>Interactive bots, automation, status downloaders, and custom commands</p>
+    </div>
+    <div class="service-box">
+      <h3>⚠️ Spam Tool</h3>
+      <p>Testing, security research tools & message automation scripts</p>
+    </div>
+    <div class="service-box">
+      <h3>🦠 Virus Tool</h3>
+      <p>Cybersecurity simulations, safe virus testing & ethical hacking tools</p>
+    </div>
+  </div>
 
+  <div class="group-btn">
+    <a href="#">🚀 Join Our Group</a>
   </div>
 
   <footer>
