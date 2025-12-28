@@ -218,13 +218,21 @@ footer{ padding:25px; background:#111; font-size:14px; color:#aaa; text-shadow:0
 
 <script>
 
-    <script>
-window.addEventListener("load", () => {
-    setTimeout(() => {
-        const loader = document.getElementById("loader");
-        loader.classList.add("hide");
-    }, 4000); // 4 seconds
-});
+let percent = 0;
+const percentText = document.getElementById("percent");
+const loader = document.getElementById("loader");
+
+const loadingInterval = setInterval(() => {
+    percent++;
+    percentText.innerText = percent + "%";
+
+    if (percent >= 100) {
+        clearInterval(loadingInterval);
+        setTimeout(() => {
+            loader.classList.add("hide");
+        }, 400);
+    }
+}, 30);
 
     
 // Hacker-style background animation
