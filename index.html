@@ -250,22 +250,24 @@ footer{ padding:25px; background:#111; font-size:14px; color:#aaa; text-shadow:0
 
 <script>
 
-let percent = 0;
-const percentText = document.getElementById("percent");
-const loader = document.getElementById("loader");
+// Page loader count
+let count = 0;
+const percent = document.getElementById("loadPercent");
+const loader = document.getElementById("page-loader");
 
-const loadingInterval = setInterval(() => {
-    percent++;
-    percentText.innerText = percent + "%";
+// Increase % to 100
+const interval = setInterval(() => {
+    count++;
+    percent.textContent = count + "%";
 
-    if (percent >= 100) {
-        clearInterval(loadingInterval);
+    if(count >= 100){
+        clearInterval(interval);
+        // fade out loader
         setTimeout(() => {
             loader.classList.add("hide");
-        }, 400);
+        }, 400); // 0.4s fade
     }
-}, 30);
-
+}, 40); // speed control (smaller = faster)
     
 // Hacker-style background animation
 const canvas = document.getElementById('bgCanvas');
