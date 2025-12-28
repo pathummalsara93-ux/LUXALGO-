@@ -232,34 +232,6 @@ const interval = setInterval(() => {
     }
 }, 30);
 
-// Hacker-style background animation
-const canvas = document.getElementById('bgCanvas');
-const ctx = canvas.getContext('2d');
-let width = canvas.width = window.innerWidth;
-let height = canvas.height = window.innerHeight;
-const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%';
-const fontSize = 14;
-const columns = Math.floor(width / fontSize);
-const drops = Array(columns).fill(height);
-function draw() {
-    ctx.fillStyle = 'rgba(17,17,17,0.08)';
-    ctx.fillRect(0,0,width,height);
-    ctx.fillStyle = '#b19cd9';
-    ctx.font = fontSize+'px monospace';
-    for(let i=0;i<drops.length;i++){
-        const text = letters[Math.floor(Math.random()*letters.length)];
-        ctx.fillText(text, i*fontSize, drops[i]*fontSize);
-        if(drops[i]*fontSize < 0 && Math.random() > 0.975) drops[i] = height/fontSize;
-        drops[i] -= 2;
-    }
-    requestAnimationFrame(draw);
-}
-draw();
-
-window.addEventListener('resize',()=>{
-    width=canvas.width=window.innerWidth;
-    height=canvas.height=window.innerHeight;
-});
 
 // Fade-in service boxes on scroll
 const serviceBoxes = document.querySelectorAll('.service-box');
