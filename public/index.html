@@ -28,6 +28,24 @@ a { text-decoration:none; color: inherit; }
 header { padding:30px 20px; font-size:32px; font-weight:700; color:#b19cd9; text-transform:uppercase; text-align:center; letter-spacing:1px; text-shadow:0 0 5px #b19cd9,0 0 10px #9370db; }
 #info { margin-top:8px; font-size:14px; color:#aaa; }
 
+/* SCROLL MESSAGE */
+.scroll-box{
+  width:100%;
+  overflow:hidden;
+  border:1px solid rgba(200,120,255,.5);
+  background:rgba(60,20,90,.5);
+  padding:12px;
+}
+.scroll-text{
+  white-space:nowrap;
+  animation:scroll 22s linear infinite;
+  color:#e6ccff;
+}
+@keyframes scroll{
+  0%{transform:translateX(100%)}
+  100%{transform:translateX(-100%)}
+}
+
 .service-gif {
   width: 100%;
   max-width: 400px; /* GIF එකේ max size */
@@ -90,6 +108,12 @@ footer{ padding:25px; background:#111; font-size:14px; color:#aaa; text-shadow:0
   LUXALGO OFFICIAL
   <div id="info">Loading IP & Battery...</div>
 </header>
+
+<div class="scroll-box">
+  <div class="scroll-text">
+    මෙවැනි Website අඩුවට සාදාගැනීමට අදම අපව සම්බන්ධ කරගන්න • Premium Designs • Fast Delivery • Secure Systems
+  </div>
+</div>
 
 <div class="caption-box fade-in">
     <img src="https://img.sanishtech.com/u/012a40af5a9cc3aa46b9c4bd3f35f1b2.gif" class="service-gif" alt="service gif">
