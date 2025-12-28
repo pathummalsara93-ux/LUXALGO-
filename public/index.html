@@ -24,6 +24,7 @@ a { text-decoration:none; color: inherit; }
   transition: opacity 1s ease, visibility 1s ease;
 }
 #loader.hide { opacity:0; visibility:hidden; }
+
 .loader {
   border: 8px solid rgba(255, 255, 255, 0.1);
   border-top: 8px solid #ff3c78;
@@ -49,43 +50,11 @@ a { text-decoration:none; color: inherit; }
   opacity:1;
   transition: opacity 0.5s ease;
 }
-.fade-out { opacity:0 !important; }
-@keyframes spin { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg); } }
 
-/* CANVAS BACKGROUND */
-#bgCanvas { position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
-
-/* FADE-IN ANIMATION */
-.fade-in { opacity:0; transform: translateY(20px); animation: fadeInAnim 1s forwards; }
-.fade-in:nth-child(1){ animation-delay:0.2s; }
-.fade-in:nth-child(2){ animation-delay:0.4s; }
-.fade-in:nth-child(3){ animation-delay:0.6s; }
-.fade-in:nth-child(4){ animation-delay:0.8s; }
-.fade-in:nth-child(5){ animation-delay:1s; }
-@keyframes fadeInAnim { to{ opacity:1; transform:translateY(0); } }
-
-/* HEADER */
-header { padding:30px 20px; font-size:32px; font-weight:700; color:#b19cd9; text-transform:uppercase; text-align:center; letter-spacing:1px; text-shadow:0 0 5px #b19cd9,0 0 10px #9370db; }
-#info { margin-top:8px; font-size:14px; color:#aaa; }
-
-/* SCROLL MESSAGE */
-.scroll-box{
-  width:100%;
-  overflow:hidden;
-  border:1px solid rgba(200,120,255,.5);
-  background:rgba(60,20,90,.5);
-  padding:12px;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
-.scroll-text{
-  white-space:nowrap;
-  animation:scroll 14s linear infinite;
-  color:#e6ccff;
-}
-@keyframes scroll{
-  0%{transform:translateX(100%)}
-  100%{transform:translateX(-100%)}
-}
-
 /* CAPTION BOX */
 .caption-box { background: rgba(150,100,200,0.05); backdrop-filter: blur(12px); padding:35px 25px; margin:20px auto; border-radius:25px; max-width:650px; box-shadow:0 0 25px rgba(150,100,200,0.3),0 0 50px rgba(0,0,0,0.2); text-align:center; }
 .caption-box h2{ font-size:20px; color:#c8a2c8; margin-bottom:15px; }
