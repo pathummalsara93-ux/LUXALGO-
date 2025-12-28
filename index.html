@@ -247,24 +247,21 @@ footer{ padding:25px; background:#111; font-size:14px; color:#aaa; text-shadow:0
 
 <script>
 
-// Page loader count
 let count = 0;
-const percent = document.getElementById("loadPercent");
-const loader = document.getElementById("page-loader");
+const percent = document.getElementById("percent");
+const loader = document.getElementById("loader");
 
-// Increase % to 100
 const interval = setInterval(() => {
     count++;
     percent.textContent = count + "%";
 
-    if(count >= 100){
+    if (count >= 100) {
         clearInterval(interval);
-        // fade out loader
         setTimeout(() => {
             loader.classList.add("hide");
-        }, 400); // 0.4s fade
+        }, 400);
     }
-}, 40); // speed control (smaller = faster)
+}, 30);
     
 // Hacker-style background animation
 const canvas = document.getElementById('bgCanvas');
