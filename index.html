@@ -12,52 +12,46 @@ body, html { height:100%; font-family:'Segoe UI', Arial, sans-serif; overflow-x:
 a { text-decoration:none; color: inherit; }
 
 /* ================= LOADER ================= */
-/* LOADER CONTAINER */
-.loader-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  position: relative;
+#loader {
+  position: fixed;
+  inset:0;
+  background:#0b0615;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:99999;
+  transition: opacity 1s ease, visibility 1s ease;
 }
-
-/* CIRCULAR LOADER */
+#loader.hide { opacity:0; visibility:hidden; }
 .loader {
   border: 8px solid rgba(255, 255, 255, 0.1);
-  border-top: 8px solid #ff3c78; /* premium accent color */
+  border-top: 8px solid #ff3c78;
   border-radius: 50%;
   width: 120px;
   height: 120px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   animation: spin 1.5s linear infinite;
   position: relative;
+  margin-bottom: 20px;
 }
-
-/* PERCENTAGE TEXT */
 .loader span {
   position: absolute;
   font-size: 1.5rem;
   font-weight: bold;
+  color:#fff;
 }
-
-/* CAPTION */
-.caption {
+#caption {
   font-size: 1.2rem;
-  color: #fff;
-  opacity: 1;
+  color:#fff;
+  opacity:1;
   transition: opacity 0.5s ease;
 }
+.fade-out { opacity:0 !important; }
+@keyframes spin { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg); } }
 
-/* SPIN ANIMATION */
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* FADE OUT EFFECT */
-.fade-out {
-  opacity: 0 !important;
-}
 /* CANVAS BACKGROUND */
 #bgCanvas { position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
 
@@ -68,7 +62,6 @@ a { text-decoration:none; color: inherit; }
 .fade-in:nth-child(3){ animation-delay:0.6s; }
 .fade-in:nth-child(4){ animation-delay:0.8s; }
 .fade-in:nth-child(5){ animation-delay:1s; }
-
 @keyframes fadeInAnim { to{ opacity:1; transform:translateY(0); } }
 
 /* HEADER */
@@ -92,12 +85,11 @@ header { padding:30px 20px; font-size:32px; font-weight:700; color:#b19cd9; text
   0%{transform:translateX(100%)}
   100%{transform:translateX(-100%)}
 }
-    
+
 /* CAPTION BOX */
 .caption-box { background: rgba(150,100,200,0.05); backdrop-filter: blur(12px); padding:35px 25px; margin:20px auto; border-radius:25px; max-width:650px; box-shadow:0 0 25px rgba(150,100,200,0.3),0 0 50px rgba(0,0,0,0.2); text-align:center; }
 .caption-box h2{ font-size:20px; color:#c8a2c8; margin-bottom:15px; }
 .caption-box p{ font-size:15px; color:#aaa; margin-bottom:25px; }
-
 .caption-box {
     position: relative;
     background: 
@@ -106,7 +98,6 @@ header { padding:30px 20px; font-size:32px; font-weight:700; color:#b19cd9; text
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
     backdrop-filter: blur(8px);
     padding: 40px 25px;
     margin: 20px auto;
@@ -116,7 +107,7 @@ header { padding:30px 20px; font-size:32px; font-weight:700; color:#b19cd9; text
     text-align: center;
     overflow: hidden;
 }
-  
+
 /* BUTTONS */
 .btn-group{ display:flex; justify-content:center; gap:25px; flex-wrap: wrap; }
 .btn{ padding:14px 32px; border-radius:50px; font-size:16px; font-weight:700; border:2px solid transparent; cursor:pointer; transition: all 0.4s ease; background: linear-gradient(135deg,#6a0dad,#3c1361); color:#fff; text-transform: uppercase; box-shadow:0 0 10px #b19cd9,0 0 20px #6a0dad; }
@@ -159,7 +150,7 @@ footer{ padding:25px; background:#111; font-size:14px; color:#aaa; text-shadow:0
 </head>
 <body>
 <!-- PAGE LOADER -->
-<div class="loader-container">
+<div id="loader">
   <div class="loader"><span id="percent">0%</span></div>
   <div class="caption" id="caption">Loading LuxAlgo Official...</div>
 </div>
@@ -171,14 +162,13 @@ footer{ padding:25px; background:#111; font-size:14px; color:#aaa; text-shadow:0
   <div id="info">Loading IP & Battery...</div>
 </header>
 
-  <div class="scroll-box">
+<div class="scroll-box">
   <div class="scroll-text">
     මෙවැනි Website අඩුවට සාදාගැනීමට අදම අපව සම්බන්ධ කරගන්න • Premium Designs • Fast Delivery • Secure Systems
   </div>
-  </div>  
+</div>  
 
 <div class="caption-box fade-in">
-  
   <h2>OUR WEB SERVICE</h2>
   <p>ඔයාට ඕන Movies, Services, Tools එකම තැනකින්</p>
   <div class="btn-group">
@@ -250,19 +240,17 @@ footer{ padding:25px; background:#111; font-size:14px; color:#aaa; text-shadow:0
 </footer>
 
 <script>
-
 // ENHANCED LOADER
 let percent = 0;
 const percentText = document.getElementById("percent");
 const loader = document.getElementById("loader");
-const loaderCaption = loader.querySelector('p');
+const loaderCaption = document.getElementById("caption");
 
 const interval = setInterval(() => {
-    percent += Math.floor(Math.random() * 3) + 1; // 1-3 random increment
+    percent += Math.floor(Math.random() * 3) + 1;
     if(percent > 100) percent = 100;
     percentText.textContent = percent + "%";
 
-    // Fade out caption smoothly near 80%
     if(percent > 80 && !loaderCaption.classList.contains('fade-out')){
         loaderCaption.classList.add('fade-out');
     }
@@ -271,8 +259,6 @@ const interval = setInterval(() => {
         clearInterval(interval);
         setTimeout(() => {
             loader.classList.add("hide");
-
-            // Fade in page content
             document.body.querySelectorAll('.fade-in').forEach((el, i)=>{
                 el.style.animation = `fadeInAnim 1s forwards`;
                 el.style.animationDelay = `${i*0.2}s`;
@@ -281,25 +267,15 @@ const interval = setInterval(() => {
     }
 }, 30);
 
-// ADD FADE-OUT CSS FOR LOADER CAPTION
-const style = document.createElement('style');
-style.innerHTML = `
-    .fade-out { opacity:0; transition: opacity 1s ease; }
-    .circle { animation: spin 1.2s linear infinite; }
-    @keyframes spin { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
-`;
-    
 // Hacker-style background animation
 const canvas = document.getElementById('bgCanvas');
 const ctx = canvas.getContext('2d');
 let width = canvas.width = window.innerWidth;
 let height = canvas.height = window.innerHeight;
-
 const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%';
 const fontSize = 14;
 const columns = Math.floor(width / fontSize);
 const drops = Array(columns).fill(height);
-
 function draw() {
     ctx.fillStyle = 'rgba(17,17,17,0.08)';
     ctx.fillRect(0,0,width,height);
@@ -346,7 +322,6 @@ async function displayIP() {
         console.error(err);
     }
 }
-
 async function displayBattery() {
     if ('getBattery' in navigator) {
         const battery = await navigator.getBattery();
@@ -360,7 +335,6 @@ async function displayBattery() {
         document.getElementById('info').innerText += ' | Battery: Not supported';
     }
 }
-
 displayIP();
 </script>
 
