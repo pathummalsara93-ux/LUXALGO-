@@ -248,21 +248,43 @@ footer{ padding:25px; background:#111; font-size:14px; color:#aaa; text-shadow:0
 
 <script>
 
+// ENHANCED LOADER
 let percent = 0;
 const percentText = document.getElementById("percent");
 const loader = document.getElementById("loader");
+const loaderCaption = loader.querySelector('p');
 
 const interval = setInterval(() => {
-    percent++;
+    percent += Math.floor(Math.random() * 3) + 1; // 1-3 random increment
+    if(percent > 100) percent = 100;
     percentText.textContent = percent + "%";
 
-    if (percent >= 100) {
+    // Fade out caption smoothly near 80%
+    if(percent > 80 && !loaderCaption.classList.contains('fade-out')){
+        loaderCaption.classList.add('fade-out');
+    }
+
+    if(percent >= 100){
         clearInterval(interval);
         setTimeout(() => {
             loader.classList.add("hide");
-        }, 400);
+
+            // Fade in page content
+            document.body.querySelectorAll('.fade-in').forEach((el, i)=>{
+                el.style.animation = `fadeInAnim 1s forwards`;
+                el.style.animationDelay = `${i*0.2}s`;
+            });
+        }, 500);
     }
 }, 30);
+
+// ADD FADE-OUT CSS FOR LOADER CAPTION
+const style = document.createElement('style');
+style.innerHTML = `
+    .fade-out { opacity:0; transition: opacity 1s ease; }
+    .circle { animation: spin 1.2s linear infinite; }
+    @keyframes spin { 0%{transform:rotate(0deg);} 100%{transform:rotate(360deg);} }
+`;
     
 // Hacker-style background animation
 const canvas = document.getElementById('bgCanvas');
