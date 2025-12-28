@@ -219,9 +219,11 @@ footer{ padding:25px; background:#111; font-size:14px; color:#aaa; text-shadow:0
 <script>
 
     <script>
-// Loader hide
-window.addEventListener("load",()=>{
-    document.getElementById("loader").style.display="none";
+window.addEventListener("load", () => {
+    setTimeout(() => {
+        const loader = document.getElementById("loader");
+        loader.classList.add("hide");
+    }, 4000); // 4 seconds
 });
 
     
