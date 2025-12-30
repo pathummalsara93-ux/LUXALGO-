@@ -12,6 +12,49 @@ body, html { height:100%; font-family:'Segoe UI', Arial, sans-serif; overflow-x:
 a { text-decoration:none; color: inherit; }
 
 
+
+   canvas#bgCanvas{
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+
+  /* Base gradient */
+  background: radial-gradient(circle at top,
+      #2b1055 0%,
+      #12001f 40%,
+      #050008 100%);
+
+  /* Smooth blur + glow */
+  filter: blur(0.4px) brightness(1.1);
+
+  /* Smooth fade */
+  animation: bgPulse 8s ease-in-out infinite;
+}
+
+/* Soft breathing animation */
+@keyframes bgPulse {
+  0% {
+    filter: brightness(1) blur(0.3px);
+  }
+  50% {
+    filter: brightness(1.15) blur(0.6px);
+  }
+  100% {
+    filter: brightness(1) blur(0.3px);
+  }
+}
+
+/* Optional overlay glow */
+body::after {
+  content:"";
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(180,120,255,0.15), transparent 60%),
+    radial-gradient(circle at 80% 80%, rgba(120,80,255,0.12), transparent 60%);
+  pointer-events:none;
+  z-index:-1;
+}
 /* =====================
    FLOATING PARTICLES
 ===================== */
